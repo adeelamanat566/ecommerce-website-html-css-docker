@@ -1,0 +1,43 @@
+services:
+  db:
+    container_name: test
+    image: mysql
+    environment:
+      MYSQL_USER: ROOT
+      MYSQL_PASSWORD: adeel
+      MYSQL_ROOT_PASSWORD: ROOT
+      MYSQL_DATABASE: databse
+    ports: 
+    - "3306:3306"
+    
+    volumes:
+    - mysqldata:/var/lib/mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost","-u","ROOT","-pROOT"]
+      timeout: 10s
+      interval: 5s
+      retries: 3
+    networks:
+      - mynetwork
+  app:
+    build:
+      context: .
+    container_name: apptest
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: ROOT
+      MYSQL_PASSWORD: adeel
+      MYSQL_DATABASE: databse
+    ports:
+    - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mynetwork
+      
+volumes:
+  mysqldata:
+networks:
+  mynetwork:

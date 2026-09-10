@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Greeting App</title>
+</head>
+<body>
+
+    <h1>Flask Greeting App</h1>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Enter your name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if name %}
+        <h2>Hello, {{ name }}!</h2>
+    {% endif %}
+
+</body>
+</html>
