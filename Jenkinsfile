@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh '''
                     export TAG=${TAG}
-                    docker compose up -d
+                    docker compose up -d --build
                     docker ps -a
                 '''
             }
