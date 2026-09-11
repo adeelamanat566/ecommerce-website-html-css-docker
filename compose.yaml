@@ -12,6 +12,7 @@ services:
     
     volumes:
     - mysqldata:/var/lib/mysql
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost","-u","ROOT","-pROOT"]
