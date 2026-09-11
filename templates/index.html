@@ -1,622 +1,2392 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopHub - Online Store</title>
+
+    <title>ShopHub - Modern Online Store</title>
+
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
-
-    body {
-        background: #f5f6fa;
-        color: #222;
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    header {
-        background: #111827;
-        color: white;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    .topbar {
-        padding: 10px 6%;
-        background: #0b1220;
-        display: flex;
-        justify-content: space-between;
-        font-size: 14px;
-    }
-
-    nav {
-        padding: 18px 6%;
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .logo {
-        font-size: 26px;
-        font-weight: bold;
-    }
-
-    .logo span {
-        color: #38bdf8;
-    }
-
-    .search {
-        flex: 1;
-        display: flex;
-        max-width: 650px;
-    }
-
-    .search input {
-        width: 100%;
-        padding: 13px;
-        border: none;
-        outline: none;
-        border-radius: 7px 0 0 7px;
-    }
-
-    .search button {
-        padding: 0 20px;
-        border: none;
-        background: #38bdf8;
-        cursor: pointer;
-        border-radius: 0 7px 7px 0;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 20px;
-        font-size: 15px;
-    }
-
-    .hero {
-        min-height: 430px;
-        padding: 80px 6%;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(120deg, #dbeafe, #f0f9ff);
-    }
-
-    .hero-content {
-        max-width: 650px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-        margin-bottom: 20px;
-    }
-
-    .hero p {
-        font-size: 19px;
-        color: #555;
-        margin-bottom: 30px;
-        line-height: 1.6;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 13px 24px;
-        border: none;
-        border-radius: 7px;
-        cursor: pointer;
-        background: #111827;
-        color: white;
-        font-weight: bold;
-    }
-
-    .btn:hover {
-        opacity: .85;
-    }
-
-    .section {
-        padding: 60px 6%;
-    }
-
-    .section-title {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 30px;
-        align-items: center;
-    }
-
-    .section-title h2 {
-        font-size: 30px;
-    }
-
-    .categories {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
-
-    .category {
-        background: white;
-        padding: 35px 20px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 3px 15px rgba(0,0,0,.06);
-        cursor: pointer;
-        transition: .2s;
-    }
-
-    .category:hover {
-        transform: translateY(-5px);
-    }
-
-    .category .icon {
-        font-size: 42px;
-        margin-bottom: 12px;
-    }
-
-    .products {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-    }
-
-    .product {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 3px 15px rgba(0,0,0,.07);
-        transition: .2s;
-    }
-
-    .product:hover {
-        transform: translateY(-5px);
-    }
-
-    .product-image {
-        height: 210px;
-        background: #e5e7eb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 65px;
-    }
-
-    .product-info {
-        padding: 20px;
-    }
-
-    .product-info h3 {
-        margin-bottom: 10px;
-    }
-
-    .product-info p {
-        color: #777;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-
-    .price {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 15px;
-    }
-
-    .product button {
-        width: 100%;
-    }
-
-    .features {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
-
-    .feature {
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        text-align: center;
-    }
-
-    .feature h3 {
-        margin: 15px 0 10px;
-    }
-
-    .feature p {
-        color: #666;
-        line-height: 1.5;
-    }
-
-    .newsletter {
-        background: #111827;
-        color: white;
-        padding: 55px 6%;
-        text-align: center;
-    }
-
-    .newsletter h2 {
-        font-size: 32px;
-        margin-bottom: 12px;
-    }
-
-    .newsletter p {
-        margin-bottom: 25px;
-        color: #cbd5e1;
-    }
-
-    .newsletter input {
-        padding: 14px;
-        width: 320px;
-        border: none;
-        border-radius: 6px;
-        margin-right: 8px;
-    }
-
-    footer {
-        background: #020617;
-        color: #cbd5e1;
-        padding: 50px 6%;
-    }
-
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        gap: 30px;
-    }
-
-    footer h3 {
-        color: white;
-        margin-bottom: 15px;
-    }
-
-    footer p,
-    footer a {
-        display: block;
-        margin-bottom: 10px;
-        color: #94a3b8;
-    }
-
-    .cart {
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-        background: #38bdf8;
-        color: #111827;
-        padding: 15px 20px;
-        border-radius: 50px;
-        font-weight: bold;
-        box-shadow: 0 5px 20px rgba(0,0,0,.2);
-    }
-
-    @media (max-width: 1000px) {
-        .products {
-            grid-template-columns: repeat(2, 1fr);
+        html {
+            scroll-behavior: smooth;
         }
 
-        .categories {
-            grid-template-columns: repeat(2, 1fr);
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f8fc;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
-        .footer-grid {
-            grid-template-columns: repeat(2, 1fr);
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-    }
 
-    @media (max-width: 700px) {
-        nav {
-            flex-wrap: wrap;
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+        }
+
+        .topbar {
+            background: #111827;
+            color: #fff;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 13px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 74px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #111827;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .search {
+            flex: 1;
+            display: flex;
+            max-width: 470px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px 0 0 10px;
+            outline: none;
+        }
+
+        .search button {
+            padding: 0 17px;
+            background: #2563eb;
+            color: white;
+            border-radius: 0 10px 10px 0;
         }
 
         .nav-links {
-            width: 100%;
-            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .cart-link {
+            position: relative;
+            font-size: 22px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -11px;
+            min-width: 19px;
+            height: 19px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            display: grid;
+            place-items: center;
+            padding: 0 4px;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            background: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .page {
+            display: none;
+            padding-bottom: 70px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            margin-top: 25px;
+            border-radius: 22px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #111827, #2563eb);
+            color: white;
+            padding: 70px 55px;
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            align-items: center;
+            gap: 30px;
         }
 
         .hero h1 {
+            font-size: 52px;
+            line-height: 1.08;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            max-width: 620px;
+            color: #dbeafe;
+            margin-bottom: 28px;
+        }
+
+        .hero-image {
+            font-size: 150px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 19px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .hero .btn-primary {
+            background: white;
+            color: #111827;
+        }
+
+        .btn-dark {
+            background: #111827;
+            color: white;
+        }
+
+        .btn-light {
+            background: #eef2ff;
+            color: #1d4ed8;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .section {
+            margin-top: 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-size: 30px;
+        }
+
+        .section-header p {
+            color: #6b7280;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,.07);
+        }
+
+        .category-icon {
+            font-size: 44px;
+            margin-bottom: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: .2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,.08);
+        }
+
+        .product-thumb {
+            height: 210px;
+            background: #f3f4f6;
+            display: grid;
+            place-items: center;
+            font-size: 82px;
+            position: relative;
+        }
+
+        .deal-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ef4444;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 7px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: white;
+            font-size: 17px;
+        }
+
+        .product-body {
+            padding: 17px;
+        }
+
+        .product-category {
+            color: #2563eb;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .product-body h3 {
+            margin: 7px 0;
+            font-size: 18px;
+        }
+
+        .product-description {
+            color: #6b7280;
+            font-size: 13px;
+            min-height: 42px;
+        }
+
+        .product-bottom {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .filters {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 14px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .filters select,
+        .filters input {
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            outline: none;
+            min-width: 160px;
+        }
+
+        .page-title {
+            padding: 45px 0 20px;
+        }
+
+        .page-title h1 {
             font-size: 38px;
         }
 
-        .products,
-        .categories,
-        .features {
-            grid-template-columns: 1fr;
+        .page-title p {
+            color: #6b7280;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .detail-image {
+            min-height: 420px;
+            border-radius: 18px;
+            background: #f3f4f6;
+            display: grid;
+            place-items: center;
+            font-size: 170px;
+        }
+
+        .detail-info h1 {
+            font-size: 38px;
+            line-height: 1.15;
+            margin: 10px 0 14px;
+        }
+
+        .detail-price {
+            font-size: 34px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .detail-description {
+            color: #6b7280;
+            margin-bottom: 22px;
+        }
+
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .quantity-box button {
+            width: 42px;
+            height: 42px;
+            background: #f3f4f6;
+        }
+
+        .quantity-box span {
+            width: 45px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1.5fr .8fr;
+            gap: 25px;
+        }
+
+        .cart-list,
+        .summary,
+        .form-card,
+        .info-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 75px 1fr auto auto;
+            align-items: center;
+            gap: 15px;
+            padding: 17px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: grid;
+            place-items: center;
+            font-size: 34px;
+        }
+
+        .summary {
+            padding: 22px;
+            height: max-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary h3 {
+            margin-bottom: 18px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        .summary-total {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 10px;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .form-card {
+            padding: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 15px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            outline: none;
+        }
+
+        .field textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 25px;
+        }
+
+        .info-card .big {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .faq {
+            display: grid;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .newsletter {
+            margin-top: 50px;
+            border-radius: 20px;
+            background: #111827;
+            color: white;
+            padding: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .newsletter form {
+            display: flex;
+            min-width: 420px;
         }
 
         .newsletter input {
-            width: 100%;
-            margin: 0 0 10px;
+            flex: 1;
+            padding: 13px;
+            border: none;
+            outline: none;
+            border-radius: 9px 0 0 9px;
         }
 
-        .footer-grid {
-            grid-template-columns: 1fr;
+        .newsletter button {
+            border-radius: 0 9px 9px 0;
         }
-    }
-</style>
-```
 
+        .message {
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 55px 20px;
+            color: #6b7280;
+        }
+
+        .empty-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #111827;
+            color: #d1d5db;
+            margin-top: 20px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        footer h3,
+        footer h4 {
+            color: white;
+            margin-bottom: 14px;
+        }
+
+        footer p,
+        footer a {
+            color: #9ca3af;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 45px;
+            color: #6b7280;
+        }
+
+        .success-box {
+            max-width: 650px;
+            margin: 70px auto;
+            background: white;
+            text-align: center;
+            padding: 50px 25px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .success-box .icon {
+            font-size: 80px;
+            margin-bottom: 12px;
+        }
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #111827;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: .25s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .mobile-menu {
+                display: block;
+                margin-left: auto;
+            }
+
+            .search {
+                order: 3;
+                width: 100%;
+                max-width: none;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 10px 0;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .category-grid,
+            .product-grid,
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-grid,
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .newsletter form {
+                min-width: 0;
+            }
+
+            .footer-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .hero {
+                padding: 42px 25px;
+            }
+
+            .hero h1 {
+                font-size: 37px;
+            }
+
+            .hero-image {
+                font-size: 100px;
+            }
+
+            .category-grid,
+            .product-grid,
+            .info-grid,
+            .form-grid,
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+            }
+
+            .cart-item > div:nth-child(3),
+            .cart-item > div:nth-child(4) {
+                grid-column: 2;
+            }
+
+            .newsletter form {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .newsletter input,
+            .newsletter button {
+                border-radius: 9px;
+            }
+
+            .detail-image {
+                min-height: 280px;
+                font-size: 110px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+<div class="topbar">
+    Free shipping on orders over $100 • 30-day easy returns
+</div>
+
 <header>
-    <div class="topbar">
-        <span>Free shipping on orders over $50</span>
-        <span>24/7 Customer Support</span>
-    </div>
+    <div class="nav">
 
-<<<<<<< HEAD
-    <form method="POST">
-        <input type="text" name="name" placeholder="Enter your name" required>
-        <button type="submit">sab kho 
-=======
-```
-<nav>
-    <div class="logo">Shop<span>Hub</span></div>
->>>>>>> cd9f5ce (test commit)
+        <a href="#/" class="logo">
+            Shop<span>Hub</span>
+        </a>
 
-    <div class="search">
-        <input id="searchInput" type="text" placeholder="Search products...">
-        <button onclick="searchProducts()">Search</button>
-    </div>
-
-    <div class="nav-links">
-        <a href="#products">Products</a>
-        <a href="#categories">Categories</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
-```
-
-</header>
-
-<section class="hero">
-    <div class="hero-content">
-        <h1>Everything You Need, All in One Place</h1>
-        <p>
-            Discover quality products at affordable prices.
-            Shop electronics, fashion, home products and much more.
-        </p>
-        <a href="#products" class="btn">Shop Now</a>
-    </div>
-</section>
-
-<section class="section" id="categories">
-    <div class="section-title">
-        <h2>Shop by Category</h2>
-    </div>
-
-```
-<div class="categories">
-    <div class="category" onclick="filterCategory('Electronics')">
-        <div class="icon">💻</div>
-        <h3>Electronics</h3>
-    </div>
-
-    <div class="category" onclick="filterCategory('Fashion')">
-        <div class="icon">👕</div>
-        <h3>Fashion</h3>
-    </div>
-
-    <div class="category" onclick="filterCategory('Home')">
-        <div class="icon">🏠</div>
-        <h3>Home</h3>
-    </div>
-
-    <div class="category" onclick="filterCategory('Sports')">
-        <div class="icon">⚽</div>
-        <h3>Sports</h3>
-    </div>
-</div>
-```
-
-</section>
-
-<section class="section" id="products">
-    <div class="section-title">
-        <h2>Featured Products</h2>
-        <button class="btn" onclick="loadProducts()">Refresh</button>
-    </div>
-
-```
-<div class="products" id="productList"></div>
-```
-
-</section>
-
-<section class="section">
-    <div class="section-title">
-        <h2>Why Shop With Us?</h2>
-    </div>
-
-```
-<div class="features">
-    <div class="feature">
-        <div style="font-size:45px">🚚</div>
-        <h3>Fast Delivery</h3>
-        <p>Quick and reliable delivery directly to your doorstep.</p>
-    </div>
-
-    <div class="feature">
-        <div style="font-size:45px">🔒</div>
-        <h3>Secure Shopping</h3>
-        <p>Your account and shopping information are protected.</p>
-    </div>
-
-    <div class="feature">
-        <div style="font-size:45px">⭐</div>
-        <h3>Quality Products</h3>
-        <p>We provide carefully selected products for our customers.</p>
-    </div>
-</div>
-```
-
-</section>
-
-<section class="newsletter">
-    <h2>Join Our Newsletter</h2>
-    <p>Get the latest products and special offers.</p>
-
-```
-<form onsubmit="subscribe(event)">
-    <input id="email" type="email" placeholder="Enter your email" required>
-    <button class="btn">Subscribe</button>
-</form>
-```
-
-</section>
-
-<footer id="contact">
-    <div class="footer-grid">
-        <div>
-            <h3>ShopHub</h3>
-            <p>Your trusted online shopping destination.</p>
+        <div class="search">
+            <input id="globalSearch" type="text" placeholder="Search products...">
+            <button onclick="searchFromHeader()">🔍</button>
         </div>
 
-```
-    <div>
-        <h3>Shopping</h3>
-        <a href="#products">Products</a>
-        <a href="#categories">Categories</a>
-        <a href="#">Deals</a>
+        <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#/">Home</a>
+            <a href="#/shop">Shop</a>
+            <a href="#/deals">Deals</a>
+            <a href="#/about">About</a>
+            <a href="#/contact">Contact</a>
+            <a href="#/wishlist">♡ Wishlist</a>
+            <a href="#/cart" class="cart-link">
+                🛒
+                <span class="cart-badge" id="cartCount">0</span>
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <!-- HOME -->
+    <section id="page-home" class="page active">
+        <div class="container">
+
+            <div class="hero">
+                <div>
+                    <h1>Everything You Need, In One Place.</h1>
+                    <p>
+                        Discover electronics, fashion, home essentials and sports products
+                        with a clean and modern shopping experience.
+                    </p>
+
+                    <a href="#/shop" class="btn btn-primary">
+                        Shop Now →
+                    </a>
+                </div>
+
+                <div class="hero-image">
+                    🛍️
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <h2>Shop by Category</h2>
+                        <p>Find exactly what you are looking for.</p>
+                    </div>
+                </div>
+
+                <div class="category-grid">
+                    <a class="category-card" href="#/shop?category=Electronics">
+                        <div class="category-icon">💻</div>
+                        <h3>Electronics</h3>
+                        <p>Smart devices and accessories</p>
+                    </a>
+
+                    <a class="category-card" href="#/shop?category=Fashion">
+                        <div class="category-icon">👕</div>
+                        <h3>Fashion</h3>
+                        <p>Modern everyday styles</p>
+                    </a>
+
+                    <a class="category-card" href="#/shop?category=Home">
+                        <div class="category-icon">🏠</div>
+                        <h3>Home</h3>
+                        <p>Make your space better</p>
+                    </a>
+
+                    <a class="category-card" href="#/shop?category=Sports">
+                        <div class="category-icon">⚽</div>
+                        <h3>Sports</h3>
+                        <p>Gear for active lifestyles</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div>
+                        <h2>Featured Products</h2>
+                        <p>Popular picks from our store.</p>
+                    </div>
+
+                    <a href="#/shop" class="btn btn-light">View All</a>
+                </div>
+
+                <div id="homeProducts" class="product-grid">
+                    <div class="loading">Loading products...</div>
+                </div>
+            </div>
+
+            <div class="info-grid section">
+                <div class="info-card">
+                    <div class="big">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Reliable shipping and quick order processing.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="big">🔒</div>
+                    <h3>Secure Shopping</h3>
+                    <p>Your information is handled with care.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="big">↩️</div>
+                    <h3>Easy Returns</h3>
+                    <p>Simple returns within our return window.</p>
+                </div>
+            </div>
+
+            <div class="newsletter">
+                <div>
+                    <h2>Stay in the loop</h2>
+                    <p>Get updates about new products and special offers.</p>
+                </div>
+
+                <form onsubmit="subscribe(event)">
+                    <input id="newsletterEmail" type="email" placeholder="Your email address" required>
+                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="page-shop" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>Shop</h1>
+                <p>Explore our complete collection.</p>
+            </div>
+
+            <div class="filters">
+                <input id="shopSearch" type="text" placeholder="Search products...">
+
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home">Home</option>
+                    <option value="Sports">Sports</option>
+                </select>
+
+                <select id="sortFilter">
+                    <option value="latest">Latest</option>
+                    <option value="price_low">Price: Low to High</option>
+                    <option value="price_high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+
+                <button class="btn btn-dark" onclick="loadShopProducts()">
+                    Apply
+                </button>
+            </div>
+
+            <div id="shopProducts" class="product-grid">
+                <div class="loading">Loading...</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DEALS -->
+    <section id="page-deals" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>🔥 Today's Deals</h1>
+                <p>Special products selected for great value.</p>
+            </div>
+
+            <div id="dealProducts" class="product-grid">
+                <div class="loading">Loading deals...</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAIL -->
+    <section id="page-product" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <a href="#/shop" class="btn btn-light">← Back to Shop</a>
+            </div>
+
+            <div id="productDetails">
+                <div class="loading">Loading product...</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CART -->
+    <section id="page-cart" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>Your Cart</h1>
+                <p>Review your selected products.</p>
+            </div>
+
+            <div id="cartMessage" class="message"></div>
+
+            <div id="cartContent">
+                <div class="loading">Loading cart...</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section id="page-checkout" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>Checkout</h1>
+                <p>Enter your information to place the order.</p>
+            </div>
+
+            <div id="checkoutMessage" class="message"></div>
+
+            <div class="cart-layout">
+
+                <div class="form-card">
+                    <form onsubmit="placeOrder(event)">
+
+                        <div class="form-grid">
+
+                            <div class="field">
+                                <label>Full Name</label>
+                                <input id="checkoutName" required>
+                            </div>
+
+                            <div class="field">
+                                <label>Email</label>
+                                <input id="checkoutEmail" type="email" required>
+                            </div>
+
+                            <div class="field">
+                                <label>Phone</label>
+                                <input id="checkoutPhone" required>
+                            </div>
+
+                            <div class="field">
+                                <label>City</label>
+                                <input id="checkoutCity" required>
+                            </div>
+
+                            <div class="field full">
+                                <label>Shipping Address</label>
+                                <textarea id="checkoutAddress" required></textarea>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">
+                            Place Order
+                        </button>
+
+                    </form>
+                </div>
+
+                <div id="checkoutSummary"></div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="page-about" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>About ShopHub</h1>
+                <p>Built to make online shopping simple and enjoyable.</p>
+            </div>
+
+            <div class="detail-grid">
+
+                <div>
+                    <div class="detail-image">🏬</div>
+                </div>
+
+                <div class="detail-info">
+                    <span class="product-category">OUR STORY</span>
+
+                    <h1>Shopping made easier.</h1>
+
+                    <p class="detail-description">
+                        ShopHub is a modern e-commerce platform designed around a simple
+                        idea: customers should be able to discover useful products quickly,
+                        compare their choices easily and complete their shopping journey
+                        without unnecessary complexity.
+                    </p>
+
+                    <p class="detail-description">
+                        From technology and fashion to home essentials and sports products,
+                        our goal is to bring a clean and convenient shopping experience to
+                        every visitor.
+                    </p>
+
+                    <a href="#/shop" class="btn btn-primary">Explore Products</a>
+                </div>
+
+            </div>
+
+            <div class="info-grid section">
+                <div class="info-card">
+                    <div class="big">⭐</div>
+                    <h3>Quality First</h3>
+                    <p>Products selected with customer value in mind.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="big">🤝</div>
+                    <h3>Customer Focus</h3>
+                    <p>A simple experience from browsing to checkout.</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="big">🚀</div>
+                    <h3>Always Improving</h3>
+                    <p>We continuously improve the shopping experience.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="page-contact" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>Contact Us</h1>
+                <p>Have a question? Send us a message.</p>
+            </div>
+
+            <div class="cart-layout">
+
+                <div class="form-card">
+
+                    <div id="contactMessage" class="message"></div>
+
+                    <form onsubmit="sendContact(event)">
+
+                        <div class="form-grid">
+
+                            <div class="field">
+                                <label>Name</label>
+                                <input id="contactName" required>
+                            </div>
+
+                            <div class="field">
+                                <label>Email</label>
+                                <input id="contactEmail" type="email" required>
+                            </div>
+
+                            <div class="field full">
+                                <label>Subject</label>
+                                <input id="contactSubject" required>
+                            </div>
+
+                            <div class="field full">
+                                <label>Message</label>
+                                <textarea id="contactText" required></textarea>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">
+                            Send Message
+                        </button>
+
+                    </form>
+                </div>
+
+                <div class="info-card">
+                    <h3>Customer Support</h3>
+                    <p>📧 support@shophub.com</p>
+                    <p>📞 +92 300 1234567</p>
+                    <p>📍 Lahore, Pakistan</p>
+
+                    <br>
+
+                    <h3>Support Hours</h3>
+                    <p>Monday - Friday</p>
+                    <p>9:00 AM - 6:00 PM</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="page-faq" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>Frequently Asked Questions</h1>
+                <p>Quick answers to common questions.</p>
+            </div>
+
+            <div class="faq">
+
+                <details class="faq-item">
+                    <summary>How do I place an order?</summary>
+                    <p>Browse products, add your items to the cart and continue to checkout.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I remove products from my cart?</summary>
+                    <p>Yes. Open the cart and use the remove button for any product.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I change product quantity?</summary>
+                    <p>Yes. Use the plus and minus controls inside your cart.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do you offer returns?</summary>
+                    <p>We support returns according to our return policy and product conditions.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How can I contact support?</summary>
+                    <p>Use the Contact page and send your message through the support form.</p>
+                </details>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WISHLIST -->
+    <section id="page-wishlist" class="page">
+        <div class="container">
+
+            <div class="page-title">
+                <h1>♡ Wishlist</h1>
+                <p>Your saved products.</p>
+            </div>
+
+            <div id="wishlistProducts" class="product-grid">
+                <div class="empty">
+                    <div class="empty-icon">♡</div>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Save products you want to check later.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUCCESS -->
+    <section id="page-success" class="page">
+        <div class="container">
+
+            <div class="success-box">
+                <div class="icon">✅</div>
+                <h1>Order Placed Successfully!</h1>
+                <p id="successText">Thank you for shopping with ShopHub.</p>
+
+                <br>
+
+                <a href="#/shop" class="btn btn-primary">
+                    Continue Shopping
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 404 -->
+    <section id="page-404" class="page">
+        <div class="container">
+
+            <div class="success-box">
+                <div class="icon">🔍</div>
+                <h1>Page Not Found</h1>
+                <p>The page you are looking for does not exist.</p>
+
+                <br>
+
+                <a href="#/" class="btn btn-primary">
+                    Go Home
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <h3>ShopHub</h3>
+            <p>
+                A modern e-commerce experience for everyday shopping.
+            </p>
+        </div>
+
+        <div>
+            <h4>Shop</h4>
+            <a href="#/shop">All Products</a>
+            <a href="#/deals">Deals</a>
+            <a href="#/wishlist">Wishlist</a>
+            <a href="#/cart">Cart</a>
+        </div>
+
+        <div>
+            <h4>Company</h4>
+            <a href="#/about">About Us</a>
+            <a href="#/contact">Contact</a>
+            <a href="#/faq">FAQ</a>
+        </div>
+
+        <div>
+            <h4>Support</h4>
+            <p>support@shophub.com</p>
+            <p>+92 300 1234567</p>
+            <p>Lahore, Pakistan</p>
+        </div>
+
     </div>
 
-    <div>
-        <h3>Support</h3>
-        <a href="#">Help Center</a>
-        <a href="#">Shipping</a>
-        <a href="#">Returns</a>
+    <div class="footer-bottom">
+        © 2026 ShopHub. All rights reserved.
     </div>
-
-    <div>
-        <h3>Contact</h3>
-        <p>support@shophub.com</p>
-        <p>+92 300 1234567</p>
-        <p>Lahore, Pakistan</p>
-    </div>
-</div>
-```
 
 </footer>
 
-<div class="cart">
-    🛒 Cart: <span id="cartCount">0</span>
-</div>
+<div id="toast" class="toast"></div>
 
 <script>
-let cartCount = 0;
 
-async function loadProducts() {
-    try {
-        const response = await fetch("/api/products");
-        const products = await response.json();
+const API = "/api";
 
-        displayProducts(products);
-    } catch (error) {
-        document.getElementById("productList").innerHTML =
-            "<p>Unable to load products.</p>";
-    }
+let allProducts = [];
+let currentProduct = null;
+
+let cart = JSON.parse(localStorage.getItem("shophub_cart") || "[]");
+let wishlist = JSON.parse(localStorage.getItem("shophub_wishlist") || "[]");
+
+function saveCart() {
+    localStorage.setItem("shophub_cart", JSON.stringify(cart));
+    updateCartCount();
 }
 
-function displayProducts(products) {
-    const list = document.getElementById("productList");
-
-    if (!products.length) {
-        list.innerHTML = "<p>No products found.</p>";
-        return;
-    }
-
-    list.innerHTML = products.map(product => `
-        <div class="product">
-            <div class="product-image">${product.icon}</div>
-
-            <div class="product-info">
-                <h3>${product.name}</h3>
-
-                <p>${product.description}</p>
-
-                <div class="price">$${Number(product.price).toFixed(2)}</div>
-
-                <button class="btn"
-                    onclick="addToCart(${product.id})">
-                    Add to Cart
-                </button>
-            </div>
-        </div>
-    `).join("");
+function saveWishlist() {
+    localStorage.setItem("shophub_wishlist", JSON.stringify(wishlist));
 }
 
-async function searchProducts() {
-    const query = document.getElementById("searchInput").value;
+function updateCartCount() {
 
-    const response = await fetch(
-        "/api/products?search=" + encodeURIComponent(query)
+    const count = cart.reduce(
+        (total, item) => total + Number(item.quantity),
+        0
     );
 
-    const products = await response.json();
-    displayProducts(products);
+    document.getElementById("cartCount").textContent = count;
 }
 
-async function filterCategory(category) {
-    const response = await fetch(
-        "/api/products?category=" + encodeURIComponent(category)
-    );
+function showToast(message) {
 
-    const products = await response.json();
-    displayProducts(products);
+    const toast = document.getElementById("toast");
 
-    document.getElementById("products").scrollIntoView({
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+}
+
+function showMessage(elementId, message, type = "success") {
+
+    const element = document.getElementById(elementId);
+
+    element.className = `message ${type}`;
+    element.textContent = message;
+}
+
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("open");
+}
+
+function navigateTo(hash) {
+    window.location.hash = hash;
+}
+
+function getRoute() {
+
+    let hash = window.location.hash || "#/";
+
+    const [path, queryString] = hash.substring(1).split("?");
+
+    const params = new URLSearchParams(queryString || "");
+
+    return {
+        path: path || "/",
+        params
+    };
+}
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    const page = document.getElementById(`page-${pageId}`);
+
+    if (page) {
+        page.classList.add("active");
+    } else {
+        document.getElementById("page-404").classList.add("active");
+    }
+
+    document.getElementById("navLinks").classList.remove("open");
+
+    window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
 }
 
-async function addToCart(productId) {
-    const response = await fetch("/api/cart", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            product_id: productId,
-            quantity: 1
-        })
-    });
+async function router() {
 
-    if (response.ok) {
-        cartCount++;
-        document.getElementById("cartCount").textContent = cartCount;
+    const route = getRoute();
+
+    if (route.path === "/") {
+
+        showPage("home");
+        loadHomeProducts();
+
+    } else if (route.path === "/shop") {
+
+        showPage("shop");
+
+        const category = route.params.get("category") || "";
+
+        document.getElementById("categoryFilter").value = category;
+
+        loadShopProducts();
+
+    } else if (route.path === "/deals") {
+
+        showPage("deals");
+        loadDeals();
+
+    } else if (route.path === "/product") {
+
+        showPage("product");
+
+        const id = route.params.get("id");
+
+        if (id) {
+            loadProductDetails(id);
+        } else {
+            navigateTo("#/shop");
+        }
+
+    } else if (route.path === "/cart") {
+
+        showPage("cart");
+        renderCart();
+
+    } else if (route.path === "/checkout") {
+
+        showPage("checkout");
+        renderCheckout();
+
+    } else if (route.path === "/about") {
+
+        showPage("about");
+
+    } else if (route.path === "/contact") {
+
+        showPage("contact");
+
+    } else if (route.path === "/faq") {
+
+        showPage("faq");
+
+    } else if (route.path === "/wishlist") {
+
+        showPage("wishlist");
+        renderWishlist();
+
+    } else if (route.path === "/success") {
+
+        showPage("success");
+
+        const orderId = route.params.get("order");
+
+        document.getElementById("successText").textContent =
+            orderId
+                ? `Your order #${orderId} has been placed successfully.`
+                : "Thank you for shopping with ShopHub.";
+
+    } else {
+
+        showPage("404");
+    }
+
+    updateCartCount();
+}
+
+async function fetchJSON(url, options = {}) {
+
+    const response = await fetch(url, options);
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+    }
+
+    return data;
+}
+
+async function loadHomeProducts() {
+
+    const box = document.getElementById("homeProducts");
+
+    try {
+
+        const products = await fetchJSON(`${API}/products`);
+
+        allProducts = products;
+
+        box.innerHTML = products
+            .slice(0, 8)
+            .map(renderProductCard)
+            .join("");
+
+    } catch (error) {
+
+        box.innerHTML = `<div class="empty">Unable to load products.</div>`;
+    }
+}
+
+async function loadShopProducts() {
+
+    const box = document.getElementById("shopProducts");
+
+    box.innerHTML = `<div class="loading">Loading products...</div>`;
+
+    try {
+
+        const search =
+            document.getElementById("shopSearch").value.trim();
+
+        const category =
+            document.getElementById("categoryFilter").value;
+
+        const sort =
+            document.getElementById("sortFilter").value;
+
+        const params = new URLSearchParams();
+
+        if (search) {
+            params.set("search", search);
+        }
+
+        if (category) {
+            params.set("category", category);
+        }
+
+        if (sort) {
+            params.set("sort", sort);
+        }
+
+        const products =
+            await fetchJSON(`${API}/products?${params.toString()}`);
+
+        allProducts = products;
+
+        if (!products.length) {
+            box.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">🔍</div>
+                    <h3>No products found</h3>
+                    <p>Try another search or category.</p>
+                </div>
+            `;
+            return;
+        }
+
+        box.innerHTML = products.map(renderProductCard).join("");
+
+    } catch (error) {
+
+        box.innerHTML = `
+            <div class="empty">
+                <h3>Could not load products</h3>
+                <p>${escapeHTML(error.message)}</p>
+            </div>
+        `;
+    }
+}
+
+async function loadDeals() {
+
+    const box = document.getElementById("dealProducts");
+
+    try {
+
+        const products =
+            await fetchJSON(`${API}/products?deal=true`);
+
+        if (!products.length) {
+            box.innerHTML = `
+                <div class="empty">
+                    <div class="empty-icon">🔥</div>
+                    <h3>No deals available right now</h3>
+                </div>
+            `;
+            return;
+        }
+
+        box.innerHTML = products.map(renderProductCard).join("");
+
+    } catch (error) {
+
+        box.innerHTML = `
+            <div class="empty">
+                Failed to load deals.
+            </div>
+        `;
+    }
+}
+
+function renderProductCard(product) {
+
+    const isWishlisted =
+        wishlist.includes(Number(product.id));
+
+    const deal =
+        Number(product.price) < 100;
+
+    return `
+        <div class="product-card">
+
+            <div class="product-thumb">
+
+                ${deal ? `<span class="deal-badge">DEAL</span>` : ""}
+
+                <button
+                    class="wishlist-btn"
+                    onclick="toggleWishlist(${product.id})">
+                    ${isWishlisted ? "♥" : "♡"}
+                </button>
+
+                <a href="#/product?id=${product.id}">
+                    ${escapeHTML(product.icon || "🛍️")}
+                </a>
+
+            </div>
+
+            <div class="product-body">
+
+                <span class="product-category">
+                    ${escapeHTML(product.category)}
+                </span>
+
+                <h3>
+                    <a href="#/product?id=${product.id}">
+                        ${escapeHTML(product.name)}
+                    </a>
+                </h3>
+
+                <p class="product-description">
+                    ${escapeHTML(product.description || "")}
+                </p>
+
+                <div class="product-bottom">
+
+                    <span class="price">
+                        $${Number(product.price).toFixed(2)}
+                    </span>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="addToCart(${product.id})">
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+async function loadProductDetails(id) {
+
+    const box = document.getElementById("productDetails");
+
+    box.innerHTML = `<div class="loading">Loading...</div>`;
+
+    try {
+
+        const product =
+            await fetchJSON(`${API}/products/${id}`);
+
+        currentProduct = product;
+
+        box.innerHTML = `
+            <div class="detail-grid">
+
+                <div>
+                    <div class="detail-image">
+                        ${escapeHTML(product.icon || "🛍️")}
+                    </div>
+                </div>
+
+                <div class="detail-info">
+
+                    <span class="product-category">
+                        ${escapeHTML(product.category)}
+                    </span>
+
+                    <h1>${escapeHTML(product.name)}</h1>
+
+                    <div class="detail-price">
+                        $${Number(product.price).toFixed(2)}
+                    </div>
+
+                    <p class="detail-description">
+                        ${escapeHTML(product.description || "")}
+                    </p>
+
+                    <div class="quantity-box">
+                        <button onclick="changeDetailQuantity(-1)">−</button>
+                        <span id="detailQuantity">1</span>
+                        <button onclick="changeDetailQuantity(1)">+</button>
+                    </div>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="addCurrentProductToCart()">
+                        🛒 Add to Cart
+                    </button>
+
+                    <button
+                        class="btn btn-light"
+                        onclick="toggleWishlist(${product.id})">
+                        ♡ Wishlist
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+    } catch (error) {
+
+        box.innerHTML = `
+            <div class="empty">
+                <h3>Product not found</h3>
+                <p>${escapeHTML(error.message)}</p>
+            </div>
+        `;
+    }
+}
+
+function changeDetailQuantity(amount) {
+
+    const element =
+        document.getElementById("detailQuantity");
+
+    if (!element) {
+        return;
+    }
+
+    let quantity =
+        Number(element.textContent) + amount;
+
+    quantity = Math.max(1, quantity);
+
+    element.textContent = quantity;
+}
+
+function addCurrentProductToCart() {
+
+    if (!currentProduct) {
+        return;
+    }
+
+    const quantity =
+        Number(document.getElementById("detailQuantity").textContent);
+
+    addToCart(currentProduct.id, quantity);
+}
+
+function addToCart(productId, quantity = 1) {
+
+    let product =
+        allProducts.find(p => Number(p.id) === Number(productId));
+
+    if (!product) {
+
+        fetchJSON(`${API}/products/${productId}`)
+            .then(data => {
+
+                product = data;
+
+                addProductToLocalCart(product, quantity);
+            })
+            .catch(error => {
+                showToast(error.message);
+            });
+
+        return;
+    }
+
+    addProductToLocalCart(product, quantity);
+}
+
+function addProductToLocalCart(product, quantity) {
+
+    const existing =
+        cart.find(item => Number(item.id) === Number(product.id));
+
+    if (existing) {
+        existing.quantity += Number(quantity);
+    } else {
+        cart.push({
+            id: Number(product.id),
+            name: product.name,
+            price: Number(product.price),
+            icon: product.icon,
+            quantity: Number(quantity)
+        });
+    }
+
+    saveCart();
+
+    showToast("Product added to cart");
+}
+
+function renderCart() {
+
+    const box = document.getElementById("cartContent");
+
+    if (!cart.length) {
+
+        box.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add products to get started.</p>
+                <br>
+                <a href="#/shop" class="btn btn-primary">
+                    Start Shopping
+                </a>
+            </div>
+        `;
+
+        return;
+    }
+
+    const subtotal =
+        cart.reduce(
+            (sum, item) =>
+                sum + Number(item.price) * Number(item.quantity),
+            0
+        );
+
+    const shipping =
+        subtotal >= 100 ? 0 : 8;
+
+    const total = subtotal + shipping;
+
+    box.innerHTML = `
+        <div class="cart-layout">
+
+            <div class="cart-list">
+
+                ${cart.map(item => `
+
+                    <div class="cart-item">
+
+                        <div class="cart-icon">
+                            ${escapeHTML(item.icon || "🛍️")}
+                        </div>
+
+                        <div>
+                            <h3>${escapeHTML(item.name)}</h3>
+                            <p>$${Number(item.price).toFixed(2)} each</p>
+                        </div>
+
+                        <div class="quantity-box">
+                            <button onclick="updateCartQuantity(${item.id}, -1)">−</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                        </div>
+
+                        <div>
+                            <strong>
+                                $${(Number(item.price) * Number(item.quantity)).toFixed(2)}
+                            </strong>
+
+                            <br>
+
+                            <button
+                                class="btn btn-danger"
+                                onclick="removeFromCart(${item.id})">
+                                Remove
+                            </button>
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+            <div class="summary">
+
+                <h3>Order Summary</h3>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>
+                        ${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}
+                    </span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+
+                <br>
+
+                <a href="#/checkout"
+                   class="btn btn-primary"
+                   style="width:100%;">
+                    Proceed to Checkout
+                </a>
+
+            </div>
+
+        </div>
+    `;
+}
+
+function updateCartQuantity(productId, change) {
+
+    const item =
+        cart.find(item => Number(item.id) === Number(productId));
+
+    if (!item) {
+        return;
+    }
+
+    item.quantity += change;
+
+    if (item.quantity <= 0) {
+        cart = cart.filter(
+            current => Number(current.id) !== Number(productId)
+        );
+    }
+
+    saveCart();
+    renderCart();
+}
+
+function removeFromCart(productId) {
+
+    cart =
+        cart.filter(
+            item => Number(item.id) !== Number(productId)
+        );
+
+    saveCart();
+
+    showToast("Product removed");
+
+    renderCart();
+}
+
+function renderCheckout() {
+
+    const box =
+        document.getElementById("checkoutSummary");
+
+    if (!cart.length) {
+
+        box.innerHTML = `
+            <div class="summary">
+                <h3>Your cart is empty</h3>
+                <a href="#/shop" class="btn btn-primary">
+                    Shop Now
+                </a>
+            </div>
+        `;
+
+        return;
+    }
+
+    const subtotal =
+        cart.reduce(
+            (sum, item) =>
+                sum + Number(item.price) * Number(item.quantity),
+            0
+        );
+
+    const shipping =
+        subtotal >= 100 ? 0 : 8;
+
+    const total =
+        subtotal + shipping;
+
+    box.innerHTML = `
+        <div class="summary">
+
+            <h3>Order Summary</h3>
+
+            ${cart.map(item => `
+                <div class="summary-row">
+                    <span>
+                        ${escapeHTML(item.name)} × ${item.quantity}
+                    </span>
+                    <span>
+                        $${(item.price * item.quantity).toFixed(2)}
+                    </span>
+                </div>
+            `).join("")}
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>${shipping === 0 ? "FREE" : "$" + shipping.toFixed(2)}</span>
+            </div>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <span>$${total.toFixed(2)}</span>
+            </div>
+
+        </div>
+    `;
+}
+
+async function placeOrder(event) {
+
+    event.preventDefault();
+
+    if (!cart.length) {
+        showMessage(
+            "checkoutMessage",
+            "Your cart is empty.",
+            "error"
+        );
+        return;
+    }
+
+    const payload = {
+
+        name:
+            document.getElementById("checkoutName").value.trim(),
+
+        email:
+            document.getElementById("checkoutEmail").value.trim(),
+
+        phone:
+            document.getElementById("checkoutPhone").value.trim(),
+
+        city:
+            document.getElementById("checkoutCity").value.trim(),
+
+        address:
+            document.getElementById("checkoutAddress").value.trim(),
+
+        items:
+            cart.map(item => ({
+                product_id: item.id,
+                quantity: item.quantity
+            }))
+    };
+
+    try {
+
+        const result =
+            await fetchJSON(`${API}/orders`, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(payload)
+            });
+
+        cart = [];
+
+        saveCart();
+
+        navigateTo(`#/success?order=${result.order_id}`);
+
+    } catch (error) {
+
+        showMessage(
+            "checkoutMessage",
+            error.message,
+            "error"
+        );
     }
 }
 
 async function subscribe(event) {
+
     event.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const email =
+        document.getElementById("newsletterEmail").value.trim();
 
-    const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
-    });
+    try {
 
-    if (response.ok) {
-        alert("Successfully subscribed!");
-        document.getElementById("email").value = "";
+        await fetchJSON(`${API}/subscribe`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                email
+            })
+        });
+
+        document.getElementById("newsletterEmail").value = "";
+
+        showToast("Subscribed successfully!");
+
+    } catch (error) {
+
+        showToast(error.message);
     }
 }
 
-loadProducts();
+async function sendContact(event) {
+
+    event.preventDefault();
+
+    try {
+
+        await fetchJSON(`${API}/contact`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                name:
+                    document.getElementById("contactName").value.trim(),
+
+                email:
+                    document.getElementById("contactEmail").value.trim(),
+
+                subject:
+                    document.getElementById("contactSubject").value.trim(),
+
+                message:
+                    document.getElementById("contactText").value.trim()
+            })
+        });
+
+        showMessage(
+            "contactMessage",
+            "Your message has been sent successfully.",
+            "success"
+        );
+
+        document.querySelector("#page-contact form").reset();
+
+    } catch (error) {
+
+        showMessage(
+            "contactMessage",
+            error.message,
+            "error"
+        );
+    }
+}
+
+function toggleWishlist(productId) {
+
+    productId = Number(productId);
+
+    if (wishlist.includes(productId)) {
+
+        wishlist =
+            wishlist.filter(id => id !== productId);
+
+        showToast("Removed from wishlist");
+
+    } else {
+
+        wishlist.push(productId);
+
+        showToast("Added to wishlist");
+    }
+
+    saveWishlist();
+
+    const route = getRoute();
+
+    if (route.path === "/wishlist") {
+        renderWishlist();
+    }
+
+    if (route.path === "/" || route.path === "/shop" || route.path === "/deals") {
+        router();
+    }
+}
+
+async function renderWishlist() {
+
+    const box =
+        document.getElementById("wishlistProducts");
+
+    if (!wishlist.length) {
+
+        box.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">♡</div>
+                <h3>Your wishlist is empty</h3>
+                <p>Click the heart icon on a product to save it.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    try {
+
+        const products =
+            await Promise.all(
+                wishlist.map(
+                    id => fetchJSON(`${API}/products/${id}`)
+                )
+            );
+
+        box.innerHTML =
+            products.map(renderProductCard).join("");
+
+    } catch (error) {
+
+        box.innerHTML = `
+            <div class="empty">
+                Unable to load wishlist.
+            </div>
+        `;
+    }
+}
+
+function searchFromHeader() {
+
+    const value =
+        document.getElementById("globalSearch").value.trim();
+
+    if (value) {
+        navigateTo(`#/shop?search=${encodeURIComponent(value)}`);
+    } else {
+        navigateTo("#/shop");
+    }
+}
+
+function escapeHTML(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent = value == null ? "" : String(value);
+
+    return div.innerHTML;
+}
+
+document.getElementById("globalSearch")
+    .addEventListener("keydown", event => {
+
+        if (event.key === "Enter") {
+            searchFromHeader();
+        }
+    });
+
+document.getElementById("shopSearch")
+    .addEventListener("keydown", event => {
+
+        if (event.key === "Enter") {
+            loadShopProducts();
+        }
+    });
+
+window.addEventListener("hashchange", router);
+
+updateCartCount();
+router();
+
 </script>
 
 </body>
 </html>
+
