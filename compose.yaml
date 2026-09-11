@@ -37,6 +37,7 @@ services:
         condition: service_healthy
     networks:
       - mynetwork
+    restart: unless-stopped
       
 volumes:
   mysqldata:
