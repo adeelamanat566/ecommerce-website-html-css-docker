@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -38,7 +39,7 @@ pipeline {
             }
         }
 
-        stage('DEPLOY') {
+        stage('DEPLOY DEV') {
             steps {
                 sh '''
                     export TAG=${TAG}
@@ -47,5 +48,37 @@ pipeline {
                 '''
             }
         }
+
+        stage('TEST DEV') {
+            steps {
+                sh '''
+                    echo "Testing DEV deployment..."
+                    docker ps
+                '''
+            }
+        }
+
+        stage('APPROVE LIVE') {
+            steps {
+                input message: 'DEV tested successfully. Deploy to LIVE?', ok: 'Deploy LIVE'
+            }
+        }
+
+        stage('DEPLOY LIVE') {
+            steps {
+                sshagent(['live-server']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@LIVE_EC2_IP "
+                            cd /home/ubuntu/app &&
+                            export TAG=${TAG} &&
+                            docker compose pull &&
+                            docker compose up -d &&
+                            docker ps
+                        "
+                    '''
+                }
+            }
+        }
     }
 }
+```
