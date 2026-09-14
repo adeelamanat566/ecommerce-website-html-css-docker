@@ -22,8 +22,7 @@ services:
     networks:
       - mynetwork
   app:
-    build:
-      context: .
+    image: adeelamanat56/night:${TAG}
     container_name: apptest
     environment:
       MYSQL_HOST: db
