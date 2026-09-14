@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -52,7 +51,7 @@ pipeline {
         stage('TEST DEV') {
             steps {
                 sh '''
-                    echo "Testing DEV..."
+                    echo "Testing DEV deployment..."
                     docker ps
                 '''
             }
@@ -69,7 +68,7 @@ pipeline {
                 sshagent(['live-server']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ubuntu@15.252.146.239 "
-                            mkdir -p /home/ubuntu/app
+                            sudo mkdir -p /home/ubuntu/app
                         "
 
                         scp -o StrictHostKeyChecking=no compose.yaml \
@@ -78,9 +77,9 @@ pipeline {
                         ssh -o StrictHostKeyChecking=no ubuntu@15.252.146.239 "
                             cd /home/ubuntu/app &&
                             export TAG=${TAG} &&
-                            docker compose pull &&
-                            docker compose up -d &&
-                            docker ps
+                            sudo docker compose pull &&
+                            sudo docker compose up -d &&
+                            sudo docker ps
                         "
                     '''
                 }
@@ -88,4 +87,3 @@ pipeline {
         }
     }
 }
-
