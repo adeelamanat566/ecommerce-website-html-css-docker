@@ -43,8 +43,8 @@ pipeline {
             steps {
                 sh '''
                     export TAG=${TAG}
-                    docker compose up -d --build
-                    docker ps -a
+                    docker compose up -d
+                    docker ps
                 '''
             }
         }
@@ -52,7 +52,7 @@ pipeline {
         stage('TEST DEV') {
             steps {
                 sh '''
-                    echo "Testing DEV deployment..."
+                    echo "Testing DEV..."
                     docker ps
                 '''
             }
@@ -69,6 +69,13 @@ pipeline {
                 sshagent(['live-server']) {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ubuntu@15.252.146.239 "
+                            mkdir -p /home/ubuntu/app
+                        "
+
+                        scp -o StrictHostKeyChecking=no compose.yaml \
+                            ubuntu@15.252.146.239:/home/ubuntu/app/compose.yaml
+
+                        ssh -o StrictHostKeyChecking=no ubuntu@15.252.146.239 "
                             cd /home/ubuntu/app &&
                             export TAG=${TAG} &&
                             docker compose pull &&
@@ -81,3 +88,4 @@ pipeline {
         }
     }
 }
+
