@@ -68,7 +68,7 @@ pipeline {
             steps {
                 sshagent(['live-server']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ubuntu@LIVE_EC2_IP "
+                        ssh -o StrictHostKeyChecking=no ubuntu@15.252.146.239 "
                             cd /home/ubuntu/app &&
                             export TAG=${TAG} &&
                             docker compose pull &&
